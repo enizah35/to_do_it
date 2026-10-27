@@ -1,51 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Connexion · To Do It</title>
+    <link rel="icon" href="../assets/images/logo_todoit.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://use.typekit.net/aga5ynr.css">
-    <title>To Do It - Connexion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css?v=3">
 </head>
 
-<header>
-    <div class="main-header">
-        <div class="main-title">
-            <h1>To Do It</h1>
-        </div>
-        <p class="main-text"> Organisez vos journées et accomplissez vos tâches facilement .</p>
-    </div>
-</header>
-
-<body>
-    <div class="logo">
-        <a href="index.html"><img src="../assets/images/logo_todoit.png" alt="To Do It logo"></a>
-    </div>
-    <nav class="sidebar">
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="#">Se connecter</a></li>
-            <li><a href="inscription.html">S'inscrire</a></li>
-        </ul>
+<body class="auth-page">
+    <nav class="public-nav">
+        <a class="brand" href="index.html">
+            <img class="logo-img" src="../assets/images/logo_todoit.png" alt="">
+            <span>To Do It</span>
+        </a>
     </nav>
 
+    <main class="auth-main">
+        <div class="auth-card">
+            <h1>Bon retour</h1>
+            <p class="auth-sub">Connectez-vous pour retrouver votre mur.</p>
 
-    <div class="loginbox">
-         <h3>Connexion </h3>
-         <div id="error-message" class="error-message" style="display: none;"></div>
-         <form action="connexion.php" method="POST">
-            <div class="form-box">
-                <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+            <form class="auth-form" action="connexion.php" method="POST">
+                <div class="alert alert-error" id="error-message" hidden></div>
+                <div class="field">
+                    <label for="email">Adresse e-mail</label>
+                    <input class="input" type="email" id="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" required autofocus>
+                </div>
+                <div class="field">
+                    <label for="password">Mot de passe</label>
+                    <input class="input" type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+                <button class="btn btn-lg btn-block" type="submit">Se connecter</button>
+            </form>
+
+            <p class="auth-switch">Pas encore de compte ? <a href="inscription.html">Créer un compte</a></p>
         </div>
-        <div class="form-box">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
-        </div>
-        <button class="btn" type="submit">Se connecter</button>
-         </form>
-         <p>Pas encore inscrit ?<a href="inscription.html">Créer un compte</a></p>
-        </div>
+    </main>
+
+    <script>
+        // Affiche l'erreur transmise par connexion.php (?error=...)
+        const error = new URLSearchParams(location.search).get('error');
+        if (error) {
+            const box = document.getElementById('error-message');
+            box.textContent = error;
+            box.hidden = false;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,157 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <meta name="theme-color" content="#eceef2" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0d0e11" media="(prefers-color-scheme: dark)">
+    <title>To Do It · Vos idées, sur un mur</title>
+    <link rel="icon" href="../assets/images/logo_todoit.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://use.typekit.net/aga5ynr.css">
-    <title>To Do It - Accueil</title>
-    <style>
-        .hero-section {
-            display: flex;
-            justify-content: center;
-            align-items: center; /* Centrage vertical */
-            min-height: 80vh; /* Prend la hauteur de l'écran après le header */
-            margin-top: 2vh;
-        }
-
-        /* Utilisation de la structure et styles de loginbox pour harmoniser */
-        .hero-card {
-            font-family: "montserrat", sans-serif;
-            font-weight: 500;
-            font-style: italic;
-            background-color: rgba(244, 244, 244, 0.7); /* Même transparence que Connexion/Inscription */
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            text-align: center;
-            justify-content: center;
-            width: 50vw; /* Plus large qu'une simple loginbox, mais centré pareil */
-            max-width: 800px;
-        }
-
-        .hero-card h2 {
-            font-size: 2rem;
-            color: #333; /* Même couleur de titre que partout ailleurs */
-            margin-bottom: 20px;
-            font-style: normal; /* Plus lisible pour le gros titre */
-            font-weight: 700;
-        }
-
-        .hero-card p.intro-text {
-            color: #555; /* Couleur de texte globale */
-            font-size: 1.1rem;
-            line-height: 1.5;
-            margin-bottom: 30px;
-            font-style: normal;
-        }
-
-        .features {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .feature-box {
-            background-color: rgba(255, 255, 255, 0.6);
-            padding: 20px;
-            border-radius: 10px;
-            flex: 1;
-        }
-
-        .feature-box h4 {
-            color: #333;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            font-style: normal;
-        }
-
-        .feature-box p {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 0;
-            font-style: normal;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .cta-buttons a {
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn-outline {
-            padding: 10px;
-            border-radius: 5px;
-            border: 2px solid #5a9;
-            color: #5a9;
-            background-color: transparent;
-            margin: 20px 10px;
-            font-style: normal;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        
-        .btn-outline:hover {
-            background-color: rgba(85, 170, 153, 0.1);
-        }
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css?v=3">
 </head>
 
 <body>
-    
-    <header>
-        <div class="main-header">
-            <div class="main-title">
-                <h1>To Do It</h1>
-            </div>
-            <p class="main-text"> Organisez vos journées et accomplissez vos tâches facilement .</p>
+    <nav class="public-nav">
+        <a class="brand" href="index.html">
+            <img class="logo-img" src="../assets/images/logo_todoit.png" alt="">
+            <span>To Do It</span>
+        </a>
+        <div class="public-nav-links">
+            <a class="btn btn-quiet" href="connexion.html">Se connecter</a>
+            <a class="btn" href="inscription.html">Commencer</a>
         </div>
-    </header>
-
-    <div class="logo">
-        <a href="index.html"><img src="../assets/images/logo_todoit.png" alt="To Do It logo"></a>
-    </div>
-    <nav class="sidebar">
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="connexion.html">Se connecter</a></li>
-            <li><a href="inscription.html">S'inscrire</a></li>
-        </ul>
     </nav>
 
-    <main class="hero-section">
-        <div class="hero-card">
-            <h2>Ne perdez plus jamais le fil de vos idées</h2>
-            <p class="intro-text"><strong>To Do It</strong> révolutionne votre façon de vous organiser. Profitez d'un véritable tableau de bord interactif parsemé de Post-its colorés et d'un calendrier intelligent pour planifier vos journées.</p>
-            
-            <div class="features">
-                <div class="feature-box">
-                    <h4>📌 Tableau "Post-it"</h4>
-                    <p>Déplacez, coloriez et organisez vos listes de tâches librement sur un mur virtuel interactif.</p>
+    <main>
+        <section class="hero">
+            <div>
+                <span class="eyebrow">✦ Simple, visuel, à vous</span>
+                <h1>Vos idées,<br><em>enfin</em> à leur place.</h1>
+                <p class="hero-lead">Un mur de post-its que vous disposez comme sur un vrai bureau, relié à un calendrier clair. Moins de menus, plus de clarté.</p>
+                <div class="hero-cta">
+                    <a class="btn btn-lg" href="inscription.html">Créer mon mur gratuitement</a>
+                    <a class="btn btn-lg btn-ghost" href="connexion.html">J'ai déjà un compte</a>
                 </div>
-                <div class="feature-box">
-                    <h4>🗓️ Calendrier</h4>
-                    <p>Une vue globale sur votre mois avec la possibilité de gérer vos tâches par simple glisser-déposer.</p>
-                </div>
+                <ul class="hero-points">
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Glisser-déposer libre</li>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Calendrier synchronisé</li>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Mode sombre</li>
+                </ul>
             </div>
 
-            <div class="cta-buttons">
-                <!-- On réutilise la classe '.btn' du fichier style.css pour s'aligner Parfaitement -->
-                <a href="inscription.html"><button class="btn" style="width: auto; padding: 10px 20px;">Créer un compte</button></a>
-                <a href="connexion.html"><button class="btn-outline">Se connecter</button></a>
+            <div class="demo-wall dotted" aria-hidden="true">
+                <div class="note" style="--note-bg:#FDE68A">
+                    <div class="note-title">Réviser BDD</div>
+                    <div class="note-body">Jointures + exos du chapitre 4</div>
+                    <div class="note-foot"><span class="note-date">Demain · 09:00</span></div>
+                </div>
+                <div class="note" style="--note-bg:#BFDBFE">
+                    <div class="note-title">Idée projet</div>
+                    <div class="note-body">Un mur de post-its… mais en mieux ✨</div>
+                </div>
+                <div class="note" style="--note-bg:#FBCFE8">
+                    <div class="note-title">Courses</div>
+                    <div class="note-body">Café, pâtes, fruits</div>
+                    <div class="note-foot"><span class="note-date">Aujourd'hui · 18:00</span></div>
+                </div>
+                <div class="note" style="--note-bg:#BBF7D0">
+                    <div class="note-title">Sport</div>
+                    <div class="note-body">Footing 5 km au parc</div>
+                    <div class="note-foot"><span class="note-date">Jeu. · 07:30</span></div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="features">
+            <article class="feature">
+                <div class="feature-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+                <h3>Un mur, pas une liste</h3>
+                <p>Placez vos notes où votre cerveau les attend. Regroupez, éloignez, colorez : la disposition devient l'organisation.</p>
+            </article>
+            <article class="feature">
+                <div class="feature-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2.5v3M16 2.5v3"/></svg></div>
+                <h3>Le temps en un coup d'œil</h3>
+                <p>Chaque note vit aussi dans le calendrier. Glissez-la à un autre jour, elle suit partout.</p>
+            </article>
+            <article class="feature">
+                <div class="feature-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <h3>Pensé pour aller vite</h3>
+                <p>Touche <kbd>N</kbd> pour une nouvelle note, double-clic sur le mur, recherche instantanée, annulation d'une suppression.</p>
+            </article>
+        </section>
     </main>
-
 </body>
+
 </html>

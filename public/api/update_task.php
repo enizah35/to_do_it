@@ -41,8 +41,12 @@ if (strpos($contentType, 'application/json') !== false) {
         $description = isset($_POST['edit-description']) ? trim($_POST['edit-description']) : '';
         $start = trim($_POST['edit-start']);
         $end = isset($_POST['edit-end']) && !empty(trim($_POST['edit-end'])) ? trim($_POST['edit-end']) : null;
-        $color = isset($_POST['edit-color']) ? $_POST['edit-color'] : '#FFEB3B';
+        $color = isset($_POST['edit-color']) ? $_POST['edit-color'] : '#FDE68A';
         $id_user = $_SESSION['user_id'];
+
+        if (!preg_match('/^#[a-f0-9]{6}$/i', $color)) {
+            $color = '#FDE68A';
+        }
 
         if (empty($title) || empty($start)) {
             echo json_encode(['success' => false, 'error' => 'Le titre et la date de début sont obligatoires.']);

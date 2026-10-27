@@ -32,13 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt = $pdo->prepare("UPDATE utilisateur SET name = ?, surname = ?, email = ? WHERE id_user = ?");
                 $stmt->execute([$name, $surname, $email, $id_user]);
             }
-            
+
             // Mise à jour de la session si le nom a changé
             $_SESSION['user_name'] = $name;
-            $message = "Vos informations ont été mises à jour avec succès.";
+            $message = "Vos informations ont été mises à jour.";
         } catch (PDOException $e) {
             // Gestion de l'erreur d'email en doublon
-            if ($e->getCode() == 23505) { 
+            if ($e->getCode() == 23505) {
                 $error = "Cet email est déjà utilisé par un autre compte.";
             } else {
                 $error = "Erreur lors de la mise à jour : " . $e->getMessage();
@@ -55,87 +55,72 @@ try {
 } catch (PDOException $e) {
     $error = "Erreur de récupération des données.";
 }
+
+$pageTitle = 'Paramètres';
+$activePage = 'setting.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://use.typekit.net/aga5ynr.css">
-    <title>To Do It - Paramètres</title>
-    <style>
-        .settings-content {
-            margin-left: 10vw; /* Laisse la place à la sidebar (environ 11vw au total) */
-            display: flex;
-            justify-content: center;
-            align-items: center; /* Centrage vertical */
-            min-height: 80vh; /* Prend toute la hauteur de l'écran ou presque */
-        }
-        .msg-success { color: #81C784; background: rgba(129,199,132,0.1); padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
-        .msg-error { color: #ff4757; background: rgba(255,71,87,0.1); padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
-    </style>
+    <?php require '../includes/head.php'; ?>
 </head>
 
 <body>
-    
-    <header>
-        <div class="main-header">
-            <div class="main-title">
-                <h1>To Do It</h1>
+    <div class="app">
+        <?php require '../includes/sidebar.php'; ?>
+
+        <main class="main">
+            <header class="page-header">
+                <div>
+                    <h1 class="page-title">Paramètres</h1>
+                    <p class="page-sub">Gérez les informations de votre compte.</p>
+                </div>
+            </header>
+
+            <div class="settings-wrap">
+                <section class="card settings-card">
+                    <h2>Profil</h2>
+                    <p class="hint">Ces informations ne sont visibles que par vous.</p>
+
+                    <form class="settings-form" method="POST" action="setting.php">
+                        <?php if ($message): ?>
+                            <div class="alert alert-success"><?= htmlspecialchars($message) ?></div>
+                        <?php endif; ?>
+                        <?php if ($error): ?>
+                            <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
+                        <?php endif; ?>
+
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="name">Prénom</label>
+                                <input class="input" type="text" id="name" name="name" value="<?= htmlspecialchars($user['name'] ?? '') ?>" required>
+                            </div>
+                            <div class="field">
+                                <label for="surname">Nom</label>
+                                <input class="input" type="text" id="surname" name="surname" value="<?= htmlspecialchars($user['surname'] ?? '') ?>" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="email">Adresse e-mail</label>
+                            <input class="input" type="email" id="email" name="email" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="field">
+                            <label for="password">Nouveau mot de passe</label>
+                            <input class="input" type="password" id="password" name="password" placeholder="Laisser vide pour ne pas changer" autocomplete="new-password">
+                        </div>
+
+                        <div class="settings-actions">
+                            <button type="submit" class="btn">Enregistrer</button>
+                        </div>
+                    </form>
+                </section>
             </div>
-            <p class="main-text"> Modifiez vos informations personnelles ici.</p>
-        </div>
-    </header>
-
-    <div class="logo">
-        <a href="index.html"><img src="../assets/images/logo_todoit.png" alt="To Do It logo"></a>
+        </main>
     </div>
-    <nav class="sidebar">
-        <ul>
-            <li><a href="tab_bord.php">Tableau de bord</a></li>
-            <li><a href="calendrier.php">Calendrier</a></li>
-            <li><a href="setting.php">Paramètres</a></li>
-            <li><a href="index.html">Se déconnecter</a></li>
-        </ul>
-    </nav>
-
-    <main class="settings-content">
-        <div class="loginbox" style="margin: 0; width: 30vw; max-width: 500px; padding: 30px;">
-            <h3>Préférences du compte</h3>
-            
-            <?php if ($message): ?>
-                <div class="msg-success"><?= htmlspecialchars($message) ?></div>
-            <?php endif; ?>
-            
-            <?php if ($error): ?>
-                <div class="msg-error"><?= htmlspecialchars($error) ?></div>
-            <?php endif; ?>
-
-            <form method="POST" action="setting.php">
-                <div class="form-box">
-                    <label for="name">Prénom</label>
-                    <input type="text" id="name" name="name" value="<?= htmlspecialchars($user['name'] ?? '') ?>" required>
-                </div>
-                <div class="form-box">
-                    <label for="surname">Nom</label>
-                    <input type="text" id="surname" name="surname" value="<?= htmlspecialchars($user['surname'] ?? '') ?>" required>
-                </div>
-                <div class="form-box">
-                    <label for="email">Adresse Émail</label>
-                    <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required>
-                </div>
-                <div class="form-box">
-                    <label for="password">Nouveau mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas changer">
-                </div>
-                
-                <button type="submit" class="btn">Mettre à jour</button>
-            </form>
-        </div>
-    </main>
 </body>
+
 </html>
