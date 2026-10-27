@@ -1680,6 +1680,11 @@ textarea.input {
         display: none;
     }
 
+    .note-date {
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
     .board-hint,
     .hide-mobile {
         display: none;

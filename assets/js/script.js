@@ -370,7 +370,19 @@ function initBoard() {
         return el;
     }
 
+    // L'ordre du DOM sert à la grille mobile : on suit la disposition du mur (haut → bas, gauche → droite)
+    function orderByPosition() {
+        const ROW = NOTE_H / 2;
+        [...tasks.values()]
+            .sort((a, b) => Math.floor(a.pos_y / ROW) - Math.floor(b.pos_y / ROW) || a.pos_x - b.pos_x)
+            .forEach(task => {
+                const el = document.getElementById('task-' + task.id_task);
+                if (el) board.appendChild(el);
+            });
+    }
+
     function refreshMeta() {
+        orderByPosition();
         const count = tasks.size;
         emptyState.hidden = count > 0;
         countLabel.textContent = count === 0
@@ -552,6 +564,7 @@ function initBoard() {
             task.pos_y = parseInt(el.style.top, 10);
             savePosition(task);
             fitBoardHeight();
+            orderByPosition();
         } else {
             openEdit(task);
         }
