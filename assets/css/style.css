@@ -1754,6 +1754,18 @@ textarea.input {
         padding-left: 18px;
         padding-right: 18px;
     }
+
+    .task-footer {
+        gap: 4px;
+    }
+
+    .task-footer .btn {
+        padding: 0 12px;
+    }
+
+    .task-footer .btn-danger {
+        padding: 0 8px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
